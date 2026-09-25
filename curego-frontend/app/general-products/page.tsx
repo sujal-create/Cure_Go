@@ -66,7 +66,7 @@ export default function GeneralProductsPage() {
                 price: p.price,
                 description:
                   p.description,
-                img:
+                img: 
                   p.image ||
                   p.img,
                 category:

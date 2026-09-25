@@ -8,6 +8,9 @@ type Product = {
   price: number;
   description?: string;
   category?: string;
+  img?: string;
+  image?: string;
+  prescriptionRequired?: boolean;
 };
 
 export default function ProductCard({
