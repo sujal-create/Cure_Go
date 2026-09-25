@@ -337,42 +337,28 @@ console.log("Razorpay:", window.Razorpay);
 
   // SAVE TO MONGODB
   await fetch(
-    "http://localhost:5000/api/orders",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type":
-          "application/json",
-      },
-      body: JSON.stringify({
-        userId: user?.id,
-
-        customerName:
-          user?.name,
-
-        email:
-          user?.email,
-
-        razorpayPaymentId:
-          response.razorpay_payment_id,
-
-        razorpayOrderId:
-          response.razorpay_order_id,
-
-        items: cart,
- totalAmount: total,
-
-        address:
-          JSON.parse(addrRaw),
-
-        paymentStatus:
-          "Paid",
-
-        orderStatus:
-          "Pending",
-      }),
-    }
-  );
+  `${process.env.NEXT_PUBLIC_API_URL}/api/orders`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: user?.id,
+      customerName: user?.name,
+      email: user?.email,
+      razorpayPaymentId:
+        response.razorpay_payment_id,
+      razorpayOrderId:
+        response.razorpay_order_id,
+      items: cart,
+      totalAmount: total,
+      address: JSON.parse(addrRaw),
+      paymentStatus: "Paid",
+      orderStatus: "Pending",
+    }),
+  }
+);
 
   // EXISTING LOCALSTORAGE CODE
   const existingOrders =

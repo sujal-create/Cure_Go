@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
 
@@ -21,9 +21,9 @@ export default function OrdersPage() {
         localStorage.getItem("curego_user") || "null"
       );
 
-      const res = await fetch(
-        `http://localhost:5000/api/orders/user/${user?.id}`
-      );
+     const res = await fetch(
+  `${API_URL}/api/orders/user/${user?.id}`
+);
 
       const data = await res.json();
 

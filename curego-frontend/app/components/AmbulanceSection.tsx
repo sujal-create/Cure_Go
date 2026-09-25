@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 interface Booking {
   bookingId: string;
   etaMinutes: number;
@@ -39,21 +39,19 @@ export default function AmbulanceSection() {
     setStatus("Booking Ambulance...");
 
     try {
-      const res = await fetch(
-        "http://localhost:5000/api/ambulance",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            location,
-            medicalCondition:
-              condition,
-          }),
-        }
-      );
+     const res = await fetch(
+  `${API_URL}/api/ambulance`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      location,
+      medicalCondition: condition,
+    }),
+  }
+);
 
       const json = await res.json();
 

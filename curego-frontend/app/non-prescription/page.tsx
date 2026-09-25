@@ -9,17 +9,19 @@ export default function NonPrescriptionPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [limit, setLimit] = useState(12);
 
-  useEffect(() => {
-    fetch(
-      "http://localhost:5000/api/medicines?category=non-prescription"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setAllProducts(data);
-        setProducts(data);
-      })
-      .catch(console.error);
-  }, []);
+ const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+useEffect(() => {
+  fetch(
+    `${API_URL}/api/medicines?category=non-prescription`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      setAllProducts(data);
+      setProducts(data);
+    })
+    .catch(console.error);
+}, []);
 
   const handleSearch = (term: string) => {
     if (!term.trim()) {
